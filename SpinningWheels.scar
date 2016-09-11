@@ -9,7 +9,7 @@ begin
   wheely:=46;
   spinx:=1090;
   spiny:=398;
-  mode:='plat';
+  mode:='plat'; //Modes are rift for rift wheel and plat for platinum wheel
   wheel:= TSCARBitmap.Create('deNpjYhBlOPDy/94X/4DkfjACMnY//7fvxb/WS' +
           '2+3PP0dc+hh4annEQceRB18CGRHH3zYc/V97bnXO5793fLkN1AZEG168nvtw5/' +
           'Fp1+kHn0CVAlEkQcexB16FHvoUduld4vvftv57C/QCrj5QLQPbOOu538B91Zk5' +
