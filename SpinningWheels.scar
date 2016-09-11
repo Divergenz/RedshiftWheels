@@ -1,0 +1,168 @@
+program SpinningWheels;
+var number,wheel,spin,reveal,collect,plat,arrow: TSCARBitmap;
+var mode:String;
+var x,y,posx,posy,wheelx,wheely,spinx,spiny: Integer;
+var bank: Boolean;
+
+begin
+  wheelx:=1901;
+  wheely:=46;
+  spinx:=1090;
+  spiny:=398;
+  mode:='plat';
+  wheel:= TSCARBitmap.Create('deNpjYhBlOPDy/94X/4DkfjACMnY//7fvxb/WS' +
+          '2+3PP0dc+hh4annEQceRB18CGRHH3zYc/V97bnXO5793fLkN1AZEG168nvtw5/' +
+          'Fp1+kHn0CVAlEkQcexB16FHvoUduld4vvftv57C/QCrj5QLQPbOOu538B91Zk5' +
+          'Q==');
+  if mode='rift' then
+    begin
+      FindBitmap(posx,posy,wheel,wheelx-40,wheely-30,wheelx+40,wheely+30)
+      wheel.Free;
+      ClickMouse(posx,posy,mbLeft);
+      Wait(1000);
+      plat:= TSCARBitmap.Create('deNqdzz0KxCAQBeC0C3t2ixQiaKIBfyrtzBXSq' +
+            'BgPYKfnyLDLhhTZLfZV8vhwZp7DY1BKTZ8IIUoptdbeu/f+XTLGroZznlIqrzj' +
+            'nzv4PE2Pc9/2Hmed527YQAjBr7TeDMTbGrOuqtT57KeV0CSFkHEeEEDxuDfwDI' +
+            '5ZloZTCybcGdm6t5ZwBX8sDyh3T0g==');
+      arrow:= TSCARBitmap.Create('deNpjZxBgiDJkw0QxRlhQnDEWlGCCBSWbYkGpZ' +
+              'lhQmjkrJsq0wIKyLbGgXCssKN8aCyq0wYKKbVkwUZkdFlRhjwVVOaCjakcWAEX' +
+              'mSWI='); 
+      if FindBitmap(x,y,plat,spinx-200,spiny-100,spinx,spiny+100) then
+          begin
+            FindBitmap(posx,posy,arrow,spinx,spiny,spinx+200,spiny+200);
+            ClickMouse(posx,posy,mbLeft);
+          end;
+      plat.Free;
+      arrow.Free;
+      Wait(500);
+      repeat
+        bank:=False;
+        ClickMouse(spinx,spiny,mbLeft);
+        reveal:= TSCARBitmap.Create('deNrjZOBhqPDhLvdGoEof7p4I3kstwu+niTEwM' +
+                'HSG8S7N4IegxWn8HaG8rMwMc5P4gFLHa4WAapBRtS83OwsjVqlZCSAtWKX6Ink' +
+                'xpd5MEbvYLCzOz1TgzsWADTQH8bybKoZp4M0OEUZGhnW5AljtctNhM5JnxSoVb' +
+                'cmhJsGCR6rci/t2pwia1JJ0/q5wXgD7iXEG');
+        collect:= TSCARBitmap.Create('deNpjY2BjeD9NjG4IAHLKOdk=');
+        repeat
+          Wait(200);  
+        until FindBitmap(posx,posy,reveal,spinx-150,spiny,spinx,spiny+300) or FindBitmap(posx,posy,collect,spinx-200,spiny,spinx+200,spiny+300);  
+        Wait(1000);
+        If FindBitmap(posx,posy,reveal,spinx-150,spiny,spinx+150,spiny+300) then
+          begin
+            FindBitmap(posx,posy,reveal,spinx-200,spiny,spinx+200,spiny+300)
+            ClickMouse(posx,posy,mbLeft);
+            Wait(250);
+            MoveMouse(spinx+150,spiny);
+            repeat
+              Wait(500);
+            until FindBitmap(posx,posy,collect,spinx-200,spiny,spinx+200,spiny+300);            
+            FindBitmap(posx,posy,collect,spinx-200,spiny,spinx+200,spiny+300)
+            ClickMouse(posx,posy,mbLeft);
+            Wait(250);
+          end
+        else begin
+          FindBitmap(posx,posy,collect,spinx-200,spiny,spinx+200,spiny+300);
+          ClickMouse(posx,posy,mbLeft);
+          Wait(250);  
+        end;
+        reveal.Free;    
+        collect.Free;
+        spin:= TSCARBitmap.Create('deNoTY5BneD9NDIjeTRVblMZvo8YGQ+w26pw2G' +
+              'lw2GtwIpM5lo84BlHXQYDtSLQTRCEG3OkWctdiAWmy1hWx1xYhCOiKRNsJwE+z' +
+              'U2Ww0+eCynmZSTfF6Syutdnc5HZvkdmKy+8E+lzX1ti2J+i5GEsjmTMzQBWpfk' +
+              'g50PDtEZHWdzefNYZ/WenxcZvVxge6HuaofZsm/nykDREAGkPtxkcHrpY7uJpI' +
+              'Q9e6mku/naabYc9rqCAO5pWGanzcGvZ8hjexBrOhWF9AXohBDHi31BYYAhP10R' +
+              'eCH+VoEtQPR6yliNpo8EF1X53oDwxbCfrU2mBjtEGSrzgHRBQwiuAlv1oUQb4K' +
+              'fIbubsSQQ7Wh3hAcjSW4Aok+r3SAIbsLzVUEkmQBHYWZQH62ssSHPhInRvBAT7' +
+              'PTEXs3WIsOEt1PFbLUFYWlV1EWHq8qHe2kG/75yoZN1QhebhW92iDzoFX05SRS' +
+              'PIZdaRFCTvSgojQHziJYAMLUDox6UxdQ5HTXZA4zYE205J0TzPuxFN/DOBOVAa' +
+              'xlis5UuyNlO2pyP+lAdM1Pm6nTb+aUW+UHqoXZywLgmaI6XmcSbaVhywYfZSp+' +
+              'WWQPz1+cNAZ83BYNRCBiFftgQArTCyUAcbsiJyW4kB/50iffztEJspCEmpHqpk' +
+              'JcGlmfygwIcbAh5JpxtFAbGFMQEYJqEIGCeJd4EYMEILDkhJoCKRzDj3XoS8iY' +
+              'wmcE1whkk5e7TDcLAohvNhJerScibG/MF4MWUjRo0b+7tdibehBo/bkhuinCUj' +
+              '7HihCcPYGlMjPZXk8XAJRsoNtc32q3PE4Cb4GYk1h/Nt7NE8HyT8J0ukcd9ok8' +
+              'niALJe90iV1qFD1cJrcoSKPPiBlVqmqAywV4P6vcAMwHUjClio8UPruY4wdUcO' +
+              '4gEVYLcoIoJmG1hRT0whQPTPMRh07N1gFUV8Xkz2lnh+GQ3kHak+uXDPPX7izx' +
+              'PTnFfVG4JrPWAOTTNWyXJQzndRwXIbojTnVloBgztK3O8X64B5bWPS0zeT5fEE' +
+              'Vbi72fKfZij/GGu+od5Gh/ma4JIYA04R/n9TFmQLKp6AMcBPHE=');
+        MoveMouse(spinx+150,spiny);
+        repeat
+          Wait(250);  
+        until FindBitmap(x,y,spin,spinx-100,spiny,spinx,spiny+100);
+        spin.Free;
+        number:= TSCARBitmap.Create('deNpjZWBm+KSt80lH9zMYfdLRea+p/QGItLQ/a' +
+                 'oEYb9U03wGROggB2QDF/RMG');
+        If FindBitmap(x,y,number,spinx,spiny-80,spinx+150,spiny) then
+          bank:=True;
+        number.Free;
+      until bank=False;
+    end;
+  If mode='plat' then
+    begin
+      FindBitmap(posx,posy,wheel,wheelx-40,wheely-30,wheelx+40,wheely+30)
+      wheel.Free;
+      ClickMouse(posx,posy,mbLeft);
+      Wait(1000);
+      repeat
+        bank:=False;
+        ClickMouse(spinx,spiny,mbLeft);
+        reveal:= TSCARBitmap.Create('deNrjZOBhqPDhLvdGoEof7p4I3kstwu+niTEwM' +
+                'HSG8S7N4IegxWn8HaG8rMwMc5P4gFLHa4WAapBRtS83OwsjVqlZCSAtWKX6Ink' +
+                'xpd5MEbvYLCzOz1TgzsWADTQH8bybKoZp4M0OEUZGhnW5AljtctNhM5JnxSoVb' +
+                'cmhJsGCR6rci/t2pwia1JJ0/q5wXgD7iXEG');
+        collect:= TSCARBitmap.Create('deNpjY2BjeD9NjG4IAHLKOdk=');
+        repeat
+          Wait(200);  
+        until FindBitmap(posx,posy,reveal,spinx-150,spiny,spinx,spiny+300) or FindBitmap(posx,posy,collect,spinx-200,spiny,spinx+200,spiny+300);  
+        Wait(1000);
+        If FindBitmap(posx,posy,reveal,spinx-150,spiny,spinx+150,spiny+300) then
+          begin
+            FindBitmap(posx,posy,reveal,spinx-200,spiny,spinx+200,spiny+300)
+            ClickMouse(posx,posy,mbLeft);
+            Wait(250);
+            MoveMouse(spinx+150,spiny);
+            repeat
+              Wait(500);
+            until FindBitmap(posx,posy,collect,spinx-200,spiny,spinx+200,spiny+300);            
+            FindBitmap(posx,posy,collect,spinx-200,spiny,spinx+200,spiny+300)
+            ClickMouse(posx,posy,mbLeft);
+            Wait(250);
+          end
+        else begin
+          FindBitmap(posx,posy,collect,spinx-200,spiny,spinx+200,spiny+300);
+          ClickMouse(posx,posy,mbLeft);
+          Wait(250);  
+        end;
+        reveal.Free;    
+        collect.Free;
+        spin:= TSCARBitmap.Create('deNoTY5BneD9NDIjeTRVblMZvo8YGQ+w26pw2G' +
+              'lw2GtwIpM5lo84BlHXQYDtSLQTRCEG3OkWctdiAWmy1hWx1xYhCOiKRNsJwE+z' +
+              'U2Ww0+eCynmZSTfF6Syutdnc5HZvkdmKy+8E+lzX1ti2J+i5GEsjmTMzQBWpfk' +
+              'g50PDtEZHWdzefNYZ/WenxcZvVxge6HuaofZsm/nykDREAGkPtxkcHrpY7uJpI' +
+              'Q9e6mku/naabYc9rqCAO5pWGanzcGvZ8hjexBrOhWF9AXohBDHi31BYYAhP10R' +
+              'eCH+VoEtQPR6yliNpo8EF1X53oDwxbCfrU2mBjtEGSrzgHRBQwiuAlv1oUQb4K' +
+              'fIbubsSQQ7Wh3hAcjSW4Aok+r3SAIbsLzVUEkmQBHYWZQH62ssSHPhInRvBAT7' +
+              'PTEXs3WIsOEt1PFbLUFYWlV1EWHq8qHe2kG/75yoZN1QhebhW92iDzoFX05SRS' +
+              'PIZdaRFCTvSgojQHziJYAMLUDox6UxdQ5HTXZA4zYE205J0TzPuxFN/DOBOVAa' +
+              'xlis5UuyNlO2pyP+lAdM1Pm6nTb+aUW+UHqoXZywLgmaI6XmcSbaVhywYfZSp+' +
+              'WWQPz1+cNAZ83BYNRCBiFftgQArTCyUAcbsiJyW4kB/50iffztEJspCEmpHqpk' +
+              'JcGlmfygwIcbAh5JpxtFAbGFMQEYJqEIGCeJd4EYMEILDkhJoCKRzDj3XoS8iY' +
+              'wmcE1whkk5e7TDcLAohvNhJerScibG/MF4MWUjRo0b+7tdibehBo/bkhuinCUj' +
+              '7HihCcPYGlMjPZXk8XAJRsoNtc32q3PE4Cb4GYk1h/Nt7NE8HyT8J0ukcd9ok8' +
+              'niALJe90iV1qFD1cJrcoSKPPiBlVqmqAywV4P6vcAMwHUjClio8UPruY4wdUcO' +
+              '4gEVYLcoIoJmG1hRT0whQPTPMRh07N1gFUV8Xkz2lnh+GQ3kHak+uXDPPX7izx' +
+              'PTnFfVG4JrPWAOTTNWyXJQzndRwXIbojTnVloBgztK3O8X64B5bWPS0zeT5fEE' +
+              'Vbi72fKfZij/GGu+od5Gh/ma4JIYA04R/n9TFmQLKp6AMcBPHE=');
+        MoveMouse(spinx+150,spiny);
+        repeat
+          Wait(250);  
+        until FindBitmap(x,y,spin,spinx-100,spiny,spinx,spiny+100);
+        spin.Free;
+        number:= TSCARBitmap.Create('deNpjZWBm+KSt80lH9zMYfdLRea+p/QGItLQ/a' +
+                 'oEYb9U03wGROggB2QDF/RMG');
+        If FindBitmap(x,y,number,spinx,spiny-80,spinx+150,spiny) then
+          bank:=True;
+        number.Free;
+      until bank=False;
+    end;
+end.
