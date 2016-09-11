@@ -55,6 +55,7 @@ begin
             MoveMouse(spinx+150,spiny);
             repeat
               Wait(500);
+              ClickMouse(spinx+150,spiny,mbLeft);
             until FindBitmap(posx,posy,collect,spinx-200,spiny,spinx+200,spiny+300);            
             FindBitmap(posx,posy,collect,spinx-200,spiny,spinx+200,spiny+300)
             ClickMouse(posx,posy,mbLeft);
@@ -123,6 +124,7 @@ begin
             MoveMouse(spinx+150,spiny);
             repeat
               Wait(500);
+              ClickMouse(spinx+150,spiny,mbLeft);
             until FindBitmap(posx,posy,collect,spinx-200,spiny,spinx+200,spiny+300);            
             FindBitmap(posx,posy,collect,spinx-200,spiny,spinx+200,spiny+300)
             ClickMouse(posx,posy,mbLeft);
